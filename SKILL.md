@@ -5,6 +5,20 @@ description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game 
 
 # Godot Plugin Skill
 
+## First-Time Setup
+
+If `godot_execute` tool is not available, install the gateway extension:
+
+```bash
+# From skill directory
+./scripts/install-extension.sh
+
+# Restart gateway
+openclaw gateway restart
+```
+
+The extension files are in `extension/` directory.
+
 Control Godot 4.x Editor through 30 built-in tools.
 
 ## Quick Reference
@@ -23,34 +37,27 @@ Control Godot 4.x Editor through 30 built-in tools.
 
 ### 1. Scene Inspection
 
-```
-godot_execute: debug.tree {depth: 3}
-godot_execute: scene.getCurrent
-```
+Use `godot_execute` tool:
+- `godot_execute(tool="debug.tree", parameters={depth: 3})`
+- `godot_execute(tool="scene.getCurrent")`
 
 ### 2. Find & Modify Nodes
 
-```
-godot_execute: node.find {name: "Player"}
-godot_execute: node.getData {path: "Player"}
-godot_execute: transform.setPosition {path: "Player", x: 100, y: 200}
-```
+- `godot_execute(tool="node.find", parameters={name: "Player"})`
+- `godot_execute(tool="node.getData", parameters={path: "Player"})`
+- `godot_execute(tool="transform.setPosition", parameters={path: "Player", x: 100, y: 200})`
 
 ### 3. Create Nodes
 
-```
-godot_execute: node.create {type: "Sprite2D", name: "Enemy", parent: "Enemies"}
-godot_execute: transform.setPosition {path: "Enemies/Enemy", x: 500, y: 300}
-```
+- `godot_execute(tool="node.create", parameters={type: "Sprite2D", name: "Enemy", parent: "Enemies"})`
+- `godot_execute(tool="transform.setPosition", parameters={path: "Enemies/Enemy", x: 500, y: 300})`
 
 ### 4. Editor Control
 
-```
-godot_execute: editor.play                    # Play current scene
-godot_execute: editor.play {scene: "res://levels/level1.tscn"}  # Play specific scene
-godot_execute: editor.stop                    # Stop playing
-godot_execute: editor.getState                # Check state
-```
+- `godot_execute(tool="editor.play")` - Play current scene
+- `godot_execute(tool="editor.play", parameters={scene: "res://levels/level1.tscn"})` - Play specific scene
+- `godot_execute(tool="editor.stop")` - Stop playing
+- `godot_execute(tool="editor.getState")` - Check state
 
 ## Tool Categories
 

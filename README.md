@@ -1,50 +1,59 @@
-# OpenClaw Godot Skill
+# 🐾 OpenClaw Godot Skill
 
-OpenClaw skill for controlling Godot Editor via [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin).
+Companion skill for the [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin). Provides AI workflow patterns and gateway extension for Godot Editor control.
 
 ## Installation
 
-Copy to OpenClaw workspace:
+```bash
+# Clone to OpenClaw workspace
+git clone https://github.com/TomLeeLive/openclaw-godot-skill.git ~/.openclaw/workspace/skills/godot-plugin
+
+# Install gateway extension
+cd ~/.openclaw/workspace/skills/godot-plugin
+./scripts/install-extension.sh
+
+# Restart gateway
+openclaw gateway restart
+```
+
+## What's Included
+
+```
+godot-plugin/
+├── SKILL.md           # AI workflow guide (30 tools)
+├── extension/         # Gateway extension (required)
+│   ├── index.ts
+│   ├── openclaw.plugin.json
+│   └── package.json
+├── scripts/
+│   └── install-extension.sh
+└── references/
+    └── tools.md       # Detailed tool documentation
+```
+
+## Components
+
+| Component | Purpose | Location |
+|-----------|---------|----------|
+| **Gateway Extension** | Enables `godot_execute` tool | `~/.openclaw/extensions/godot/` |
+| **Skill** | AI workflow patterns | `~/.openclaw/workspace/skills/godot-plugin/` |
+| **Godot Plugin** | Godot Editor addon | [openclaw-godot-plugin](https://github.com/TomLeeLive/openclaw-godot-plugin) |
+
+## Quick Verify
 
 ```bash
-cp -r . ~/.openclaw/workspace/skills/godot-plugin
+# Check extension loaded
+openclaw godot status
+
+# Check skill available
+ls ~/.openclaw/workspace/skills/godot-plugin/SKILL.md
 ```
 
 ## Requirements
 
 - [OpenClaw](https://github.com/openclaw/openclaw) 2026.2.3+
-- [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin) installed in Godot
-
-## Features
-
-This skill provides guidance for 30 Godot control tools:
-
-- **Scene Management** - Open, save, list scenes
-- **Node Control** - Create, find, modify, delete nodes
-- **Transform** - Position, rotation, scale
-- **Debug Tools** - Screenshots, scene tree view
-- **Editor Control** - Play, stop, pause
-
-## Usage
-
-The skill automatically activates for Godot-related tasks:
-
-```
-"Show me the scene tree"
-"Create a Sprite2D named Enemy at (100, 200)"
-"Play the game"
-"Find all nodes in the 'enemies' group"
-```
-
-## Files
-
-```
-godot-plugin/
-├── SKILL.md              # Main skill guide
-└── references/
-    └── tools.md          # Complete tool reference
-```
+- [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin) in Godot
 
 ## License
 
-MIT License
+MIT License - See [LICENSE](LICENSE)
