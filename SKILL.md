@@ -1,11 +1,11 @@
 ---
 name: godot-plugin
-description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, debugging, and editor control. Triggers on Godot-related requests like inspecting scenes, creating nodes, taking screenshots, or controlling the editor.
+description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, input simulation, debugging, and editor control. Triggers on Godot-related requests like inspecting scenes, creating nodes, taking screenshots, testing gameplay, or controlling the editor.
 ---
 
 # Godot Plugin Skill
 
-Control Godot 4.x Editor through 33 built-in tools.
+Control Godot 4.x Editor through 40 built-in tools.
 
 ## First-Time Setup
 
@@ -21,27 +21,27 @@ openclaw gateway restart
 
 The extension files are in `extension/` directory.
 
-Control Godot 4.x Editor through 30 built-in tools.
-
 ## Quick Reference
 
 ### Core Tools
 
 | Category | Key Tools |
 |----------|-----------|
-| **Scene** | `scene.getCurrent`, `scene.list`, `scene.open` |
+| **Scene** | `scene.create`, `scene.getCurrent`, `scene.open`, `scene.save` |
 | **Node** | `node.find`, `node.create`, `node.delete`, `node.getData` |
-| **Transform** | `transform.setPosition`, `transform.setRotation` |
-| **Debug** | `debug.tree`, `debug.screenshot`, `debug.log` |
+| **Transform** | `transform.setPosition`, `transform.setRotation`, `transform.setScale` |
+| **Debug** | `debug.tree`, `debug.screenshot`, `console.getLogs` |
+| **Input** | `input.keyPress`, `input.mouseClick`, `input.actionPress` |
 | **Editor** | `editor.play`, `editor.stop`, `editor.getState` |
 
 ## Common Workflows
 
-### 1. Scene Inspection
+### 1. Scene Creation
 
 Use `godot_execute` tool:
-- `godot_execute(tool="debug.tree", parameters={depth: 3})`
-- `godot_execute(tool="scene.getCurrent")`
+- `godot_execute(tool="scene.create", parameters={rootType: "Node2D", name: "Level1"})`
+- `godot_execute(tool="node.create", parameters={type: "CharacterBody2D", name: "Player"})`
+- `godot_execute(tool="scene.save")`
 
 ### 2. Find & Modify Nodes
 
@@ -49,17 +49,18 @@ Use `godot_execute` tool:
 - `godot_execute(tool="node.getData", parameters={path: "Player"})`
 - `godot_execute(tool="transform.setPosition", parameters={path: "Player", x: 100, y: 200})`
 
-### 3. Create Nodes
+### 3. Game Testing with Input
 
-- `godot_execute(tool="node.create", parameters={type: "Sprite2D", name: "Enemy", parent: "Enemies"})`
-- `godot_execute(tool="transform.setPosition", parameters={path: "Enemies/Enemy", x: 500, y: 300})`
+- `godot_execute(tool="editor.play")`
+- `godot_execute(tool="input.keyPress", parameters={key: "W"})`
+- `godot_execute(tool="input.actionPress", parameters={action: "jump"})`
+- `godot_execute(tool="debug.screenshot")`
+- `godot_execute(tool="editor.stop")`
 
-### 4. Editor Control
+### 4. Check Logs
 
-- `godot_execute(tool="editor.play")` - Play current scene
-- `godot_execute(tool="editor.play", parameters={scene: "res://levels/level1.tscn"})` - Play specific scene
-- `godot_execute(tool="editor.stop")` - Stop playing
-- `godot_execute(tool="editor.getState")` - Check state
+- `godot_execute(tool="console.getLogs", parameters={limit: 50})`
+- `godot_execute(tool="console.getLogs", parameters={type: "error", limit: 20})`
 
 ## Tool Categories
 
@@ -80,7 +81,7 @@ Use `godot_execute` tool:
 - `node.delete` - Delete node by path
 - `node.getData` - Get node info, children, transform
 - `node.getProperty` - Get property value
-- `node.setProperty` - Set property value
+- `node.setProperty` - Set property value (Vector2/3 auto-converted)
 
 ### Transform (3 tools)
 - `transform.setPosition` - Set position {x, y} or {x, y, z}
@@ -98,6 +99,15 @@ Use `godot_execute` tool:
 - `debug.tree` - Get scene tree as text
 - `debug.log` - Print message
 
+### Input (7 tools) - For Game Testing
+- `input.keyPress` - Press and release key {key: "W"}
+- `input.keyDown` - Hold key down
+- `input.keyUp` - Release key
+- `input.mouseClick` - Click at position {x, y, button: "left"|"right"|"middle"}
+- `input.mouseMove` - Move mouse to position {x, y}
+- `input.actionPress` - Press input action {action: "jump"}
+- `input.actionRelease` - Release input action
+
 ### Script (2 tools)
 - `script.list` - List .gd files
 - `script.read` - Read script content
@@ -105,27 +115,35 @@ Use `godot_execute` tool:
 ### Resource (1 tool)
 - `resource.list` - List files by extension
 
+## Supported Keys for Input
+
+```
+A-Z, 0-9, SPACE, ENTER, ESCAPE, TAB, BACKSPACE, DELETE
+UP, DOWN, LEFT, RIGHT
+SHIFT, CTRL, ALT
+F1-F12
+```
+
 ## Node Types for Creation
 
 | Type | Description |
 |------|-------------|
-| `Node` | Base node |
 | `Node2D` | 2D spatial |
 | `Node3D` | 3D spatial |
 | `Sprite2D` | 2D sprite |
-| `Sprite3D` | 3D sprite |
 | `CharacterBody2D` | 2D character |
 | `CharacterBody3D` | 3D character |
-| `RigidBody2D` | 2D physics |
-| `RigidBody3D` | 3D physics |
-| `Area2D` | 2D area |
-| `Area3D` | 3D area |
-| `Camera2D` | 2D camera |
-| `Camera3D` | 3D camera |
-| `Label` | UI text |
-| `Button` | UI button |
+| `RigidBody2D/3D` | Physics body |
+| `Area2D/3D` | Trigger area |
+| `Camera2D/3D` | Camera |
+| `Label`, `Button` | UI elements |
 
 ## Tips
+
+### Input Simulation
+- Only works during **Play mode**
+- Use `input.actionPress` for mapped actions (from Input Map)
+- Use `input.keyPress` for direct key simulation
 
 ### Finding Nodes
 ```
@@ -134,7 +152,15 @@ node.find {type: "Sprite2D"}    # By exact type
 node.find {group: "enemies"}    # By group
 ```
 
-### Node Paths
-- Root node: leave path empty or use node name
-- Child: `"Parent/Child"`
-- Deep: `"Parent/Child/GrandChild"`
+### Vector Properties
+`node.setProperty` auto-converts dictionaries to Vector2/Vector3:
+```
+{path: "Cam", property: "zoom", value: {x: 2, y: 2}}  # → Vector2(2, 2)
+```
+
+### Console Logs
+```
+console.getLogs {limit: 50}           # Last 50 lines
+console.getLogs {type: "error"}       # Errors only
+console.getLogs {type: "warning"}     # Warnings only
+```
