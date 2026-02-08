@@ -5,6 +5,8 @@ description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game 
 
 # Godot Plugin Skill
 
+Control Godot 4.x Editor through 31 built-in tools.
+
 ## First-Time Setup
 
 If `godot_execute` tool is not available, install the gateway extension:
@@ -61,11 +63,12 @@ Use `godot_execute` tool:
 
 ## Tool Categories
 
-### Scene (4 tools)
+### Scene (5 tools)
 - `scene.getCurrent` - Get current scene info
 - `scene.list` - List all .tscn/.scn files
 - `scene.open` - Open scene by path
 - `scene.save` - Save current scene
+- `scene.create` - Create new scene {rootType: "Node2D"|"Node3D"|"Control", name: "SceneName"}
 
 ### Node (6 tools)
 - `node.find` - Find by name, type, or group
