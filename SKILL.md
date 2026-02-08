@@ -5,7 +5,7 @@ description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game 
 
 # Godot Plugin Skill
 
-Control Godot 4.x Editor through 31 built-in tools.
+Control Godot 4.x Editor through 33 built-in tools.
 
 ## First-Time Setup
 
@@ -62,6 +62,10 @@ Use `godot_execute` tool:
 - `godot_execute(tool="editor.getState")` - Check state
 
 ## Tool Categories
+
+### Console (2 tools)
+- `console.getLogs` - Get logs from Godot log file {limit: 100, type: "error"|"warning"|""}
+- `console.clear` - Placeholder (logs can't be cleared programmatically)
 
 ### Scene (5 tools)
 - `scene.getCurrent` - Get current scene info
