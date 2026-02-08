@@ -5,7 +5,7 @@ description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game 
 
 # Godot Plugin Skill
 
-Control Godot 4.x Editor through 40 built-in tools.
+Control Godot 4.x Editor through 30 built-in tools. Supports 80+ node types.
 
 ## First-Time Setup
 
@@ -77,7 +77,7 @@ Use `godot_execute` tool:
 
 ### Node (6 tools)
 - `node.find` - Find by name, type, or group
-- `node.create` - Create node (Node2D, Node3D, Sprite2D, etc.)
+- `node.create` - Create node (80+ types: CSGBox3D, MeshInstance3D, ColorRect, etc.)
 - `node.delete` - Delete node by path
 - `node.getData` - Get node info, children, transform
 - `node.getProperty` - Get property value
