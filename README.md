@@ -1,4 +1,4 @@
-# 🐾 OpenClaw Godot Skill
+# 🦞 OpenClaw Godot Skill
 
 > **TL;DR:** Vibe-code your game development remotely from anywhere! 🌍
 > 
