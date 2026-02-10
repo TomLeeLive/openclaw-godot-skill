@@ -164,3 +164,18 @@ console.getLogs {limit: 50}           # Last 50 lines
 console.getLogs {type: "error"}       # Errors only
 console.getLogs {type: "warning"}     # Warnings only
 ```
+
+## 🔐 Security: Model Invocation Setting
+
+When publishing to ClawHub, you can configure `disableModelInvocation`:
+
+| Setting | AI Auto-Invoke | User Explicit Request |
+|---------|---------------|----------------------|
+| `false` (default) | ✅ Allowed | ✅ Allowed |
+| `true` | ❌ Blocked | ✅ Allowed |
+
+### Recommendation: **`true`**
+
+**Reason:** During Godot development, it's useful for AI to autonomously perform supporting tasks like checking scene tree, taking screenshots, and inspecting nodes.
+
+**When to use `true`:** For sensitive tools (payments, deletions, message sending, etc.)
