@@ -1,6 +1,6 @@
 {
   "name": "godot",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "OpenClaw Godot Plugin",
   "main": "index.ts",
   "type": "module",
