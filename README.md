@@ -6,6 +6,16 @@
 
 Companion skill for the [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin). Provides AI workflow patterns and gateway extension for Godot Editor control.
 
+## ⚠️ Disclaimer
+
+This software is in **beta**. Use at your own risk.
+
+- Always backup your project before using
+- Test in a separate project first
+- The authors are not responsible for any data loss or project corruption
+
+See [LICENSE](LICENSE) for full terms.
+
 ## Installation
 
 ```bash
