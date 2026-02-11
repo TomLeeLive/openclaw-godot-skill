@@ -1,11 +1,28 @@
 ---
 name: godot-plugin
+version: 1.2.8
 description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, input simulation, debugging, and editor control. Triggers on Godot-related requests like inspecting scenes, creating nodes, taking screenshots, testing gameplay, or controlling the editor.
+homepage: https://github.com/TomLeeLive/openclaw-godot-skill
+author: Tom Jaejoon Lee
 ---
 
 # Godot Plugin Skill
 
 Control Godot 4.x Editor through 30 built-in tools. Supports 80+ node types.
+
+## Connection Modes
+
+### Mode A: OpenClaw Gateway (Remote)
+For Telegram, Discord, and other OpenClaw channels:
+- Plugin connects TO Gateway via WebSocket
+- Gateway URL: configurable in Godot dock UI
+- Best for: remote access, mobile messaging
+
+### Mode B: MCP Bridge (Local)
+For Claude Code, Cursor, and local AI tools:
+- Built-in HTTP server in Godot Plugin
+- Start: Click "Start MCP" in dock UI (port 27183)
+- Add to Claude Code: `claude mcp add godot -- node <path>/MCP~/index.js`
 
 ## First-Time Setup
 
