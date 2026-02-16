@@ -71,3 +71,8 @@ ls ~/.openclaw/workspace/skills/godot-plugin/SKILL.md
 ## License
 
 MIT License - See [LICENSE](LICENSE.md)
+
+## License
+
+This project has been licensed under [Apache-2.0](LICENSE) since its initial release.
+Copyright 2026 Tom Lee (TomLeeLive)
