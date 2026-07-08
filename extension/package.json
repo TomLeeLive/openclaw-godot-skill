@@ -1,7 +1,7 @@
 {
   "name": "openclaw-godot-plugin",
-  "version": "1.2.10",
-  "description": "OpenClaw Godot Plugin \u2014 connect Godot 4.x Editor to OpenClaw",
+  "version": "1.2.11",
+  "description": "OpenClaw gateway extension for the Godot 4.x Editor bridge (installs into the OpenClaw gateway). Note: this is the gateway-side half \u2014 the Godot 4.x editor add-on is a separate install from github.com/TomLeeLive/openclaw-godot-plugin.",
   "main": "index.ts",
   "type": "module",
   "openclaw": {
