@@ -204,7 +204,7 @@ As of v1.2.10 this skill ships with `disableModelInvocation: true` — it runs o
 
 This skill drives a live Godot Editor. Full disclosure of capabilities and current limitations:
 
-- **Local HTTP bridge has no authentication (current limitation)**: the MCP bridge (port 27183) accepts requests without auth or origin restriction. **Keep it bound to localhost and never expose the port on shared or public networks** — any local process could otherwise send editor commands. Token authentication and origin allow-listing are on the roadmap.
+- **Local HTTP bridge hardening (plugin v1.4.4+)**: the MCP bridge (port 27183) binds to localhost, rejects browser-originated requests (any `Origin` header → 403), and supports optional shared-secret auth — set `OPENCLAW_BRIDGE_TOKEN` for both the Godot editor process and the MCP client to require `X-OpenClaw-Token` on every request. Without the token set, keep the port on trusted machines only — any local process can send editor commands.
 - **Destructive operations** — confirm with the user before: modifying/deleting nodes, saving scenes, simulating input. Keep the project under version control before automation sessions.
 - **Data visibility**: tools can read and transmit project name, engine version, scene structure, script contents, and viewport screenshots to the connected agent. Don't use on projects whose contents must not leave the machine.
 - **Trigger scope**: routine-sounding requests ("clean up the scene", "save everything") map to state-changing editor operations — confirm once before the first state-changing call in a session.
