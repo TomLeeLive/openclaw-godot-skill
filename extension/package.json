@@ -1,10 +1,20 @@
 {
   "name": "godot",
-  "version": "1.2.8",
-  "description": "OpenClaw Godot Plugin",
+  "version": "1.2.10",
+  "description": "OpenClaw Godot Plugin \u2014 connect Godot 4.x Editor to OpenClaw",
   "main": "index.ts",
   "type": "module",
   "openclaw": {
-    "extensions": ["./index.ts"]
-  }
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.1.0"
+    },
+    "build": {
+      "openclawVersion": "2026.3.37"
+    }
+  },
+  "author": "Tom Jaejoon Lee",
+  "license": "Apache-2.0"
 }
